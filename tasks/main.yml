@@ -1,0 +1,45 @@
+---
+
+- name: Set apt configuration
+  copy:
+    src=etc/apt/apt.conf.d/{{item}}
+    dest=/etc/apt/apt.conf.d/{{item}}
+    owner=root
+    group=root
+    mode=0644
+  with_items:
+    - 02autoinstall
+    - 03fix-partitions
+
+- name: Create APT scripts directory
+  file: path=/etc/apt/scripts state=directory
+
+- name: Copy scripts for APT
+  copy:
+    src=etc/apt/scripts/{{item}}
+    dest=/etc/apt/scripts/{{item}}
+    owner=root
+    group=root
+    mode=0755
+  with_items:
+    - fix-mounts
+
+- name: remove foreign architecture
+  file:
+    path='/etc/dpkg/dpkg.cfg.d/multiarch'
+    state=absent
+  when: ansible_architecture == 'x86_64'
+  
+- name: install python apt packages
+  apt: pkg={{item}}
+  with_items:
+    - python-pycurl
+    - python-apt
+
+- include: ubuntu.yml
+  when: ansible_lsb.id == 'Ubuntu'
+
+- include: debian.yml
+  when: ansible_lsb.id == 'Debian'
+
+- meta: flush_handlers

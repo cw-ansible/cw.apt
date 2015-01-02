@@ -1,0 +1,12 @@
+- name: Install default Debian sources
+  apt_repository:
+    repo="deb {{apt_main_mirror_debian}}/{{item.r}} {{ansible_lsb.codename}}{{item.suffix|default('')}} {{item.comp}}"
+    update_cache=no
+  notify: apt-get update
+  when: (item.d is not defined) or ansible_lsb.codename in item.d
+  with_items:
+    - { r: debian, comp: 'main contrib non-free'}
+    - { r: debian, suffix: '-proposed-updates', comp: 'main contrib non-free', d: [squeeze, wheeze, jessie]}
+    - { r: debian, suffix: '-updates', comp: 'main contrib non-free', d: [squeeze, wheeze, jessie]}
+    - { r: debian, suffix: '-backports', comp: 'main contrib non-free', d: [squeeze, wheeze, jessie]}
+    #- { r: debian-backports, suffix: '-backports-sloppy', comp: 'main contrib non-free', d: [squeeze, wheeze, jessie]}

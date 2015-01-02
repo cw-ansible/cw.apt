@@ -1,0 +1,15 @@
+---
+
+- name: Install default Ubuntu sources
+  apt_repository:
+    repo="deb {{apt_main_mirror_ubuntu}}/{{item.r}} {{ansible_lsb.codename}}{{item.suffix|default('')}} {{item.comp}}"
+    state='{{ item.state | default("present") }}'
+    update_cache=no
+  notify: apt-get update
+  when: (item.d is not defined) or ansible_lsb.codename in item.d
+  with_items:
+    - { r: ubuntu, comp: 'main restricted universe multiverse'}
+    - { r: ubuntu, suffix: '-backports', comp: 'main restricted universe multiverse'}
+    - { r: ubuntu, suffix: '-proposed', comp: 'main restricted universe multiverse'}
+    - { r: ubuntu, suffix: '-security', comp: 'main restricted universe multiverse'}
+    - { r: ubuntu, suffix: '-updates', comp: 'main restricted universe multiverse'}

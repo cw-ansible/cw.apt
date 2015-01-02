@@ -1,0 +1,4 @@
+DPkg {
+	Pre-Invoke  { "/etc/apt/scripts/fix-mounts before 2> /dev/null || true" };
+	Post-Invoke { "/etc/apt/scripts/fix-mounts after 2> /dev/null || true" };
+};

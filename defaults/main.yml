@@ -1,0 +1,11 @@
+---
+
+## URL of APT source for Ubuntu.
+# you can use 'http://archive.ubuntu.com/ubuntu' or any specific
+# mirror you want. See https://launchpad.net/ubuntu/+archivemirrors
+apt_main_mirror_ubuntu: 'http://archive.ubuntu.com/ubuntu'
+
+## URL of APT source for Debian.
+# you can use 'http://ftp.debian.org/debian' or any specific
+# mirror you want. See http://ftp.debian.org/debian/README.mirrors.html
+apt_main_mirror_debian: 'http://ftp.debian.org/debian'
