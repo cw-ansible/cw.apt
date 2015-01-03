@@ -10,7 +10,8 @@
   with_items:
     - 02autoinstall
     - 03fix-partitions
-
+    - 04force-ipv4
+  
 - name: Create APT scripts directory
   file: path=/etc/apt/scripts state=directory
 
