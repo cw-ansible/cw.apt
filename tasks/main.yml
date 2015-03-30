@@ -2,11 +2,11 @@
 
 - name: Set apt configuration
   copy:
-    src=etc/apt/apt.conf.d/{{item}}
-    dest=/etc/apt/apt.conf.d/{{item}}
-    owner=root
-    group=root
-    mode=0644
+    src: etc/apt/apt.conf.d/{{item}}
+    dest: /etc/apt/apt.conf.d/{{item}}
+    owner: root
+    group: root
+    mode: 0644
   with_items:
     - 02autoinstall
     - 03fix-partitions
@@ -17,22 +17,23 @@
 
 - name: Copy scripts for APT
   copy:
-    src=etc/apt/scripts/{{item}}
-    dest=/etc/apt/scripts/{{item}}
-    owner=root
-    group=root
-    mode=0755
+    src: etc/apt/scripts/{{item}}
+    dest: /etc/apt/scripts/{{item}}
+    owner: root
+    group: root
+    mode: 0755
   with_items:
     - fix-mounts
 
 - name: remove foreign architecture
   file:
-    path='/etc/dpkg/dpkg.cfg.d/multiarch'
-    state=absent
+    path: '/etc/dpkg/dpkg.cfg.d/multiarch'
+    state: absent
   when: ansible_architecture == 'x86_64'
   
 - name: install python apt packages
-  apt: pkg={{item}}
+  apt:
+    pkg: '{{item}}'
   with_items:
     - python-pycurl
     - python-apt
