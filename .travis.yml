@@ -8,6 +8,8 @@ virtualenv:
 before_install: True
 install: True
 
+sudo: True
+
 script:
   - 'git clone --depth 1 https://github.com/nickjj/rolespec'
   - 'cd rolespec ; bin/rolespec -r https://github.com/cw-ansible/test-suite'
