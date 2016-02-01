@@ -9,3 +9,9 @@ apt_main_mirror_ubuntu: 'http://archive.ubuntu.com/ubuntu'
 # you can use 'http://ftp.debian.org/debian' or any specific
 # mirror you want. See http://ftp.debian.org/debian/README.mirrors.html
 apt_main_mirror_debian: 'http://ftp.debian.org'
+
+## Deploy policy-rc.d file
+# This script prevents from starting services within a chroot
+# environment. It does nothing on a standard system. There is no reason to
+# not deploy it.
+apt_deploy_policy_rc_d: yes

@@ -39,6 +39,15 @@
     - python-pycurl
     - python-apt
 
+- name: copy policy-rc.d
+  copy:
+    src: usr/sbin/policy-rc.d
+    dest: /usr/sbin/policy-rc.d
+    owner: root
+    group: root
+    mode: 0644
+  when: apt_deploy_policy_rc_d    
+    
 - include: ubuntu.yml
   when: ansible_lsb.id == 'Ubuntu'
 
