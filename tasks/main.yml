@@ -45,7 +45,7 @@
     dest: /usr/sbin/policy-rc.d
     owner: root
     group: root
-    mode: 0644
+    mode: 0755
     state: '{{ apt_policy_rc_d_state | default("present") }}'
     
 - include: ubuntu.yml
