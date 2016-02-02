@@ -13,5 +13,5 @@ apt_main_mirror_debian: 'http://ftp.debian.org'
 ## Deploy policy-rc.d file
 # This script prevents from starting services within a chroot
 # environment. It does nothing on a standard system. There is no reason to
-# not deploy it. Set to 'absent' if you still want to not deploy it.
-apt_policy_rc_d_state: present
+# not deploy it.
+apt_deploy_policy_rc_d: yes

@@ -46,7 +46,8 @@
     owner: root
     group: root
     mode: 0755
-    state: '{{ apt_policy_rc_d_state | default("present") }}'
+  when:
+    apt_deploy_policy_rc_d | default(True)
     
 - include: ubuntu.yml
   when: ansible_lsb.id == 'Ubuntu'
